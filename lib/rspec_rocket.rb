@@ -1,8 +1,42 @@
-# frozen_string_literal: true
+# RSpecRocket runs RSpec tests in parallel at the example (it) level.
+# It integrates with RSpec and can handle database strategies.
+#
+# Supports Rails 6 and 7 (ActiveRecord, ActiveSupport).
+#
+# @example Basic usage:
+#   rspec-rocket
+#
+# @example Configuring processors:
+#   RSpecRocket.configure do |config|
+#     config.processors = 8
+#   end
 
 require_relative "rspec_rocket/version"
+require_relative "rspec_rocket/configuration"
+require_relative "rspec_rocket/logger"
+require_relative "rspec_rocket/db_manager"
+require_relative "rspec_rocket/runner"
+require_relative "rspec_rocket/cli"
 
-module RspecRocket
-  class Error < StandardError; end
-  # Your code goes here...
+module RSpecRocket
+  class << self
+    attr_accessor :configuration
+
+    # Configures RSpecRocket using a block.
+    #
+    # @yieldparam [Configuration] config
+    # @return [void]
+    def configure
+      self.configuration ||= Configuration.new
+      yield(configuration)
+      # RSpecRocket::Logger.configure(level: configuration.log_level)
+    end
+
+    # Resets configuration to defaults.
+    #
+    # @return [void]
+    def reset_configuration
+      self.configuration = Configuration.new
+    end
+  end
 end

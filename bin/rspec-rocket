@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+# This file serves as the CLI entry point for the `rspec_rocket` gem.
+# It initializes the gem and delegates execution to the CLI class.
+
+Dir.chdir(Dir.pwd) unless Dir.pwd == File.dirname(__FILE__)
+
+spec_path = File.expand_path("spec", Dir.pwd)
+$LOAD_PATH.unshift(spec_path) unless $LOAD_PATH.include?(spec_path)
+
+require "rspec_rocket"
+
+RSpecRocket::CLI.start
