@@ -1,4 +1,5 @@
 require "optparse"
+require_relative "../rspec_rocket"
 
 module RSpecRocket
   # CLI interface for rspec_rocket.

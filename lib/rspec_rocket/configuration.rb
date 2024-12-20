@@ -8,14 +8,13 @@ module RSpecRocket
   # @attr_accessor [Symbol] log_level logging level (:debug, :info, :warn, :error)
   # @attr_accessor [Boolean] verbose enable verbose logging
   class Configuration
-    attr_accessor :processors, :spec_dir, :db_strategy, :databases, :log_level, :verbose
+    attr_accessor :processors, :spec_dir, :db_strategy, :databases, :verbose
 
     def initialize
       @processors = 4
       @spec_dir = "spec"
       @db_strategy = :transaction
       @databases = []
-      @log_level = :info
       @verbose = false
     end
   end

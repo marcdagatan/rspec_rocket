@@ -13,7 +13,6 @@
 
 require_relative "rspec_rocket/version"
 require_relative "rspec_rocket/configuration"
-require_relative "rspec_rocket/logger"
 require_relative "rspec_rocket/db_manager"
 require_relative "rspec_rocket/runner"
 require_relative "rspec_rocket/cli"
@@ -29,7 +28,6 @@ module RSpecRocket
     def configure
       self.configuration ||= Configuration.new
       yield(configuration)
-      # RSpecRocket::Logger.configure(level: configuration.log_level)
     end
 
     # Resets configuration to defaults.
